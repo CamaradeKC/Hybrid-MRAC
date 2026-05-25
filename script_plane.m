@@ -9,6 +9,8 @@ c = 3.45; %m
 speed=180;% m/s
 
 delta_max=deg2rad(25);
+wing_cm_change_angle=deg2rad(15);
+rate_of_change=15;
 
 Cm_alpha=0.12;
 Cm_alpha_stall=0.25;
@@ -26,10 +28,11 @@ pitch_value=deg2rad(5);
 
 K=1/2 *rho * S *speed *speed*c;
 desired_aoa = deg2rad(20);
+max_command_allowed = deg2rad(40);
 
 %MRAC spec
-zeta = 0.7;%1;
-wn = 4;
+zeta = 0.7;
+wn = 6;
 
 Am = [0 1; -wn^2 -2*zeta*wn];
 Bm = [0; wn^2];
@@ -43,11 +46,12 @@ D = [0;0];
 
 Q = eye(2);
 P = lyap(Am',Q);
-gain_x =5*10^4; %1*10^4
-gain_r =5*10^4; %5*10^4
-gain_e =5*10^3; %5*10^3
-Kx = [0.21 0.05];%[0.21 0.06];
-Kr = -0.18; %-0.155;
-sigma_x=0.00001;
-sigma_r=0.00001;
-sigma_w=0.00001;
+gain_x =5*10^5; 
+gain_r =5*10^5; 
+gain_e =5*10^5; 
+Kx = [0.52 0.08];
+Kr = -0.35;
+W = [0 0 0 0];
+sigma_x=0.0003;
+sigma_r=0.0003;
+sigma_w=0.0003;
