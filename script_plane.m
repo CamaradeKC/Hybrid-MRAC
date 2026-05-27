@@ -16,9 +16,9 @@ Cm_alpha=0.12;
 Cm_alpha_stall=0.25;
 Cm_alpha_deep_stall=-0.8;
 
-Cm_delta=-4.5;
-Cm_delta_stall=-2;
-Cm_delta_deep_stall=-0.5;
+Cm_delta=-1;
+Cm_delta_stall=-0.5;
+Cm_delta_deep_stall=-0.2;
 
 Cm_q=-8;
 
@@ -32,7 +32,7 @@ max_command_allowed = deg2rad(40);
 
 %MRAC spec
 zeta = 0.7;
-wn = 6;
+wn = 5;
 
 Am = [0 1; -wn^2 -2*zeta*wn];
 Bm = [0; wn^2];
@@ -48,10 +48,10 @@ Q = eye(2);
 P = lyap(Am',Q);
 gain_x =5*10^5; 
 gain_r =5*10^5; 
-gain_e =5*10^5; 
-Kx = [0.52 0.08];
-Kr = -0.35;
+gain_e =5*10^4; 
+Kx = [1.33 0.15];%[0.52 0.08];
+Kr = -0.825;%-0.35;
 W = [0 0 0 0];
-sigma_x=0.0003;
-sigma_r=0.0003;
-sigma_w=0.0003;
+sigma_x=0.0002;
+sigma_r=0.0002;
+sigma_w=0.0002;
