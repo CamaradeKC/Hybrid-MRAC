@@ -44,7 +44,7 @@ k_d2=0.08;
 %MRAC spec
 zeta_alpha = 0.7;
 zeta_gamma = 1;
-walpha = 4;
+walpha = 6;
 wgamma = 1;
 
 Am = [0 1 0 0; -walpha^2 -2*zeta_alpha*walpha 0 0; 0 0 0 1; 0 0 -wgamma^2 -2*zeta_gamma*wgamma]
@@ -56,7 +56,7 @@ B=[0; Cm_delta/Iy; 0; 0];
 
 Q = eye(size(Am));
 P = lyap(Am',Q);
-gain_x =300; 
+gain_x =200; 
 gain_r =300; 
 gain_e =0;%5*10^5; 
 Kx = [0 0 0 0];
@@ -65,6 +65,8 @@ W = [0 0 0 0];
 sigma_x=0.0003;
 sigma_r=0.0003;
 sigma_w=0.0003;
+rate_of_freeze_angle = 0.8;
+rate_of_freeze_rate = 2;
 
 desired_aoa = deg2rad(45);
 max_command_allowed = deg2rad(30);
