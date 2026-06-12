@@ -42,30 +42,35 @@ k_d1=0.045;
 k_d2=0.08;
 
 %MRAC spec
-zeta_alpha = 0.7;
+zeta_alpha = 1;%0.7;
 zeta_gamma = 1;
-walpha = 6;
+walpha = 4;%4
 wgamma = 1;
 
+% 500 = 4 300 = 2 180=1
+
 Am = [0 1 0 0; -walpha^2 -2*zeta_alpha*walpha 0 0; 0 0 0 1; 0 0 -wgamma^2 -2*zeta_gamma*wgamma]
+Am2 = [0 1; -walpha^2 -2*zeta_alpha*walpha]
 Bm = [0; walpha^2; 0; 0]
-Cm = eye(size(Am));
+Bm2 = [0; walpha^2]
+Cm = [1 0 0 0;0 1 0 0; 0 0 0 0; 0 0 0 0];
 Dm = zeros(4, 1);
 
-B=[0; Cm_delta/Iy; 0; 0];
+B=[0; Cm_delta*K/Iy; 0; 0];
 
 Q = eye(size(Am));
-P = lyap(Am',Q);
-gain_x =200; 
-gain_r =300; 
-gain_e =0;%5*10^5; 
-Kx = [0 0 0 0];
-Kr = 0;
-W = [0 0 0 0];
-sigma_x=0.0003;
-sigma_r=0.0003;
-sigma_w=0.0003;
-rate_of_freeze_angle = 0.8;
+P = lyap(Am',Q)
+P2 = lyap(Am2',eye(size(Am2)))
+gain_x =0.00002; 
+gain_r =0.0001; 
+gain_e =0.01;
+Kx = [19 -8 0 15]*10^-5;
+Kr = 10^-4;
+W = [0 0 0 0 0]*10^-6;
+sigma_x=0.001;
+sigma_r=0.001;
+sigma_w=0.001;
+rate_of_freeze_angle = 1;
 rate_of_freeze_rate = 2;
 
 desired_aoa = deg2rad(45);
