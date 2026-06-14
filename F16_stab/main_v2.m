@@ -60,12 +60,11 @@ B=[0; Cm_delta*K/Iy; 0; 0];
 
 Q = eye(size(Am));
 P = lyap(Am',Q)
-P2 = lyap(Am2',eye(size(Am2)))
 gain_x =0.00002; 
-gain_r =0.0001; 
-gain_e =0.01;
+gain_r =0.01; 
+gain_e =0.1;
 Kx = [19 -8 0 15]*10^-5;
-Kr = 10^-4;
+Kr = 34.3*10^-3;
 W = [0 0 0 0 0]*10^-6;
 sigma_x=0.001;
 sigma_r=0.001;
