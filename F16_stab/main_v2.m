@@ -43,26 +43,24 @@ k_d2=0.08;
 
 %MRAC spec
 zeta_alpha = 1;%0.7;
-zeta_gamma = 1;
 walpha = 4;%4
-wgamma = 1;
 
 % 500 = 4 300 = 2 180=1
 
-Am = [0 1 0 0; -walpha^2 -2*zeta_alpha*walpha 0 0; 0 0 0 1; 0 0 -wgamma^2 -2*zeta_gamma*wgamma]
-Am2 = [0 1; -walpha^2 -2*zeta_alpha*walpha]
-Bm = [0; walpha^2; 0; 0]
-Bm2 = [0; walpha^2]
-Cm = [1 0 0 0;0 1 0 0; 0 0 0 0; 0 0 0 0];
-Dm = zeros(4, 1);
+
+Am = [0 1; -walpha^2 -2*zeta_alpha*walpha]
+Bm = [0; walpha^2]
+Cm = [1 0;0 1];
+Dm = zeros(2, 1);
 
 B=[0; Cm_delta*K/Iy; 0; 0];
 
 Q = eye(size(Am));
 P = lyap(Am',Q)
-gain_x =0.00002; 
-gain_r =0.01; 
-gain_e =0.1;
+P = [1 0; 0 1; 0 0; 0 0]* P * [1 0 0 0; 0 1 0 0]
+gain_x =0.00002;  
+gain_r =0.001; 
+gain_e =0.01;
 Kx = [19 -8 0 15]*10^-5;
 Kr = 34.3*10^-3;
 W = [0 0 0 0 0]*10^-6;
